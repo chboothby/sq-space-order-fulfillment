@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->integer('quantity');
             $table->text('product');
             $table->text('shipping');
+            $table->text('tracking_id')->nullable();
             $table->boolean('fulfilled');
             $table->timestamps();
         });

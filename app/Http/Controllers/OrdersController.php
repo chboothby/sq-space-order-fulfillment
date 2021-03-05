@@ -16,7 +16,7 @@ class OrdersController extends Controller
     }
     public function index()
     {
-        $orders = Order::latest()->paginate(20); 
+        $orders = Order::where("fulfilled", false)->latest()->paginate(20); 
         foreach($orders as $order)
         {
             if ($order->product = "Wild Grown Frozen Açai Purée") {
