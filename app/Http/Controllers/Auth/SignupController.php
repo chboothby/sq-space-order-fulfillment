@@ -37,6 +37,6 @@ class SignupController extends Controller
 
         auth()->attempt($request->only('username', 'password'));
 
-        return redirect()->route('home');
+        return redirect()->route('unfulfilled');
     }
 }

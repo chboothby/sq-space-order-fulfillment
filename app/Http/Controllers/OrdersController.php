@@ -14,17 +14,30 @@ class OrdersController extends Controller
     {
         $this->middleware(['auth']);
     }
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::where("fulfilled", false)->latest()->paginate(20); 
-        foreach($orders as $order)
-        {
-            if ($order->product = "Wild Grown Frozen Açai Purée") {
-                $order->product = 'Frozen';
+        $orders = [];
+        if ($request->route()->named("fulfilled")) {
+            $orders = Order::where("fulfilled", true)->latest()->paginate(20); 
+            
+            foreach($orders as $order)
+            {
+                if ($order->product = "Wild Grown Frozen Açai Purée") {
+                    $order->product = "Frozen";
+                }
             }
-        }
 
-        return view('home', [
+            return view('fulfilled', [
+                'orders' => $orders
+            ]);
+
+        } else {
+            
+            $orders = Order::where("fulfilled", false)->latest()->paginate(20); 
+        }
+       
+
+        return view('unfulfilled', [
             'orders' => $orders
         ]);
     }
@@ -59,6 +72,8 @@ class OrdersController extends Controller
 
         }
         return back();
-        }
+    }
+
+  
     
 }

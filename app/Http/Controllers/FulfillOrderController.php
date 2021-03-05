@@ -17,9 +17,11 @@ class FulfillOrderController extends Controller
     public function fulfill(Request $request)
     {
        foreach($request->request as $order_id => $tracking_no) {
+
        
         if ($tracking_no && $order_id !== "_token") {
 
+            
             // $response = Http::withHeaders(["Content-Type"=> "application/json",
             // "Authorization" => env('SQ_SPACE_API_KEY'),
             // "User-Agent"=> "test",])->post("https://api.squarespace.com/1.0/commerce/orders/$order_id/fulfillments", [
@@ -32,7 +34,7 @@ class FulfillOrderController extends Controller
             //     ]
             // ]);
 
-            Order::where("order_id", $order_id)->update(['fulfilled' => true, 'tracking_id' => $tracking_no]);
+            //Order::where("order_id", $order_id)->update(['fulfilled' => true, 'tracking_id' => $tracking_no]);
         }
        }
 

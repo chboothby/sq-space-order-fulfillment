@@ -26,8 +26,11 @@ Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/', [LoginController::class, 'store']);
 
 
-Route::get('/home', [OrdersController::class, 'index'])->name('home');
-Route::post('/home', [OrdersController::class, 'fetch']);
+Route::get('/orders/unfulfilled', [OrdersController::class, 'index'])->name('unfulfilled');
+Route::post('/orders/unfulfilled', [OrdersController::class, 'fetch']);
+
+Route::get('/orders/fulfilled', [OrdersController::class, 'index'])->name('fulfilled');
+
 
 Route::get('/signup', [SignupController::class, 'index'])->name('signup');
 Route::post('/signup', [SignupController::class, 'store']);
@@ -35,5 +38,5 @@ Route::post('/signup', [SignupController::class, 'store']);
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-Route::post('/fulfill', [FulfillOrderController::class, 'fulfill'])->name('fulfill');
+Route::post('orders/fulfill', [FulfillOrderController::class, 'fulfill'])->name('fulfill');
 
