@@ -3,6 +3,7 @@
 @section('content')
     <div class="flex justify-center items-center h-screen">
         <div class="min-w-1/2 bg-white p-6 rounded-lg mt-8">
+           
             <form action="{{ route('login') }}" method="POST">
                 @csrf
                 
@@ -30,9 +31,12 @@
                 </div>
                 
                 <div>
-                    <button type="submit" class="w-full bg-theme rounded font-medium px-4 py-3 text-white ">Login</button>
+                    <button type="submit" class="w-full bg-theme rounded font-medium px-4 py-3 text-white">Login</button>
                 </div>
             </form>
+            @if ($message = Session::get('status'))
+            <p class="font-bold text-red-600 text-center mt-4">{{ $message }} </p>
+           @endif 
         </div>
     </div>
 @endsection
