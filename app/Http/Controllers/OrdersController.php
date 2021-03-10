@@ -18,7 +18,7 @@ class OrdersController extends Controller
     {
         $orders = [];
         if ($request->route()->named("fulfilled")) {
-            $orders = Order::where("fulfilled", true)->latest()->paginate(20); 
+            $orders = Order::where("fulfilled", true)->latest()->paginate(10); 
             
             foreach($orders as $order)
             {
@@ -33,7 +33,7 @@ class OrdersController extends Controller
 
         } else {
             
-            $orders = Order::where("fulfilled", false)->latest()->paginate(20); 
+            $orders = Order::where("fulfilled", false)->latest()->paginate(10); 
         }
        
 
@@ -74,6 +74,17 @@ class OrdersController extends Controller
         return back();
     }
 
-  
+
+    public function removeAllOrders()
+    {
+        Order::where('fulfilled', false)->delete();
+
+        return back();
+    }
+
+    public function removeOrder(Order $order)
+    {
+        dd($order);
+    }
     
 }

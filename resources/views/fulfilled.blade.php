@@ -11,9 +11,9 @@
             <table class="table-auto w-full text-center m-1">
                 <thead>
                   <tr>
-                    <th class="bg-purple-200 px-8 text-left py-4 border">Order No.</th>
-                    <th class="bg-purple-200 px-8 py-4 border">Product</th>
-                    <th class="bg-purple-200 px-8 py-4 border">Order Date</th>
+                    <th class="bg-purple-200 px-4 text-left py-3 border">Order No.</th>
+                    <th class="bg-purple-200 px-3 py-3 border">Product</th>
+                    <th class="bg-purple-200 px-3 py-4 border">Order Date</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\SignupController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\FulfillOrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdersController;
@@ -38,5 +39,10 @@ Route::post('/signup', [SignupController::class, 'store']);
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-Route::post('orders/fulfill', [FulfillOrderController::class, 'fulfill'])->name('fulfill');
+Route::post('/orders/fulfill', [FulfillOrderController::class, 'fulfill'])->name('fulfill');
+Route::delete('/orders', [OrdersController::class, 'removeAllOrders'])->name('orders.remove');
+
+Route::post('/upload-file', [FileUploadController::class, 'upload'])->name('file-upload.post');
+
+
 
