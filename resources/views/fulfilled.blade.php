@@ -3,11 +3,11 @@
 
 @section('content')
     <div class="flex flex-col justify-center">
-        <div class="m-auto w-9/12 bg-white p-6 flex justify-between rounded-lg">
+        <div class="m-auto w-11/12 sm:w-9/12 bg-white p-6 flex justify-between rounded-lg">
             <p class="text-lg mt-2 font-bold">Fulfilled Orders</p>  
         </div>
 
-        <div class="h-96 mx-auto m-4 w-9/12 bg-white p-6 rounded-lg  shadow-lg bg-white  overflow-x-scroll">
+        <div class="h-96 mx-auto m-4 w-11/12 sm:w-9/12 bg-white p-6 rounded-lg  shadow-lg bg-white  overflow-x-scroll">
             <table class="table-auto w-full text-center m-1">
                 <thead>
                   <tr>
