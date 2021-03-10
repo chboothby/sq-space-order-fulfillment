@@ -7,6 +7,7 @@ use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\FulfillOrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdersController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,14 @@ Route::post('/orders/fulfill', [FulfillOrderController::class, 'fulfill'])->name
 Route::delete('/orders', [OrdersController::class, 'removeAllOrders'])->name('orders.remove');
 
 Route::post('/upload-file', [FileUploadController::class, 'upload'])->name('file-upload.post');
+
+Route::fallback(function () {
+    if (Auth::check()) {
+        return redirect()->route('unfulfilled');
+    } else {
+        return redirect()->route('login');
+    }
+});
 
 
 
