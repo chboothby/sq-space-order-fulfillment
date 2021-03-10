@@ -4,11 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-// use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\URL;
 
-// if ($this->app->environment() == 'production') {
-//     URL::forceScheme('https');
-// }
 
 
 class AppServiceProvider extends ServiceProvider
@@ -34,9 +31,10 @@ class AppServiceProvider extends ServiceProvider
             return "<i class=\"fas fa-fw fa-{{ $expression }}\"></i>";
         });
 
-        if(config(‘app.env’) === ‘production’) {
-            \URL::forceScheme(‘https’);
+        if(config('app.env') === 'production') {
+            URL::forceScheme('https');
     }
 
+}
    
 }
