@@ -18,7 +18,7 @@ class OrdersController extends Controller
     {
         $orders = [];
         if ($request->route()->named("fulfilled")) {
-            $orders = Order::where("fulfilled", true)->latest()->paginate(10); 
+            $orders = Order::where("fulfilled", true)->latest()->paginate(30); 
             
             foreach($orders as $order)
             {
