@@ -52,6 +52,10 @@ class OrdersController extends Controller
 
         $orders = json_decode($response->body());
 
+        if ($response->status() != 200) {
+            return back()->with('status', 'Unable to retrieve orders from Squarespace at the moment');
+        }
+
         foreach($orders->result as $order){
             // check order no doesn't exist
             $existingOrder = Order::select("*")->where('order_number', $order->orderNumber)->get();

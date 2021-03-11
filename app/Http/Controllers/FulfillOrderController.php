@@ -46,7 +46,12 @@ class FulfillOrderController extends Controller
             ]);
 
 
-            Order::where("order_id", $order_id)->update(['fulfilled' => true, 'tracking_id' => "$tracking_no"]);
+            if ($response->status() == 204) {
+                Order::where("order_id", $order_id)->update(['fulfilled' => true, 'tracking_id' => "$tracking_no"]);
+            } else {
+                return back()->with('fulfill', 'Unable to fulfill some or all of your orders');
+            }
+
         }
        }
 
