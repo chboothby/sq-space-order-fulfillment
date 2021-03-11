@@ -2,10 +2,9 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\SignupController;
+// use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\FulfillOrderController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,8 +33,8 @@ Route::post('/orders/unfulfilled', [OrdersController::class, 'fetch']);
 Route::get('/orders/fulfilled', [OrdersController::class, 'index'])->name('fulfilled');
 
 
-Route::get('/signup', [SignupController::class, 'index'])->name('signup');
-Route::post('/signup', [SignupController::class, 'store']);
+// Route::get('/signup', [SignupController::class, 'index'])->name('signup');
+// Route::post('/signup', [SignupController::class, 'store']);
 
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');

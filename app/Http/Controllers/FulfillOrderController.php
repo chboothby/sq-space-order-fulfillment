@@ -31,9 +31,7 @@ class FulfillOrderController extends Controller
                       
             // get tracking info for order
             $shipping = Order::select('shipping')->where('order_id', $order_id)->get();
-            // dd([$order_id, $shipping[0]->shipping, $tracking_no]);
-            // dd(Carbon::now()->toIsoString());
-          
+                  
             
             $response = Http::withHeaders(["Content-Type"=> "application/json",
             "Authorization" => env('SQ_SPACE_API_KEY'),
