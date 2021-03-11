@@ -38,7 +38,7 @@ class FulfillOrderController extends Controller
             $response = Http::withHeaders(["Content-Type"=> "application/json",
             "Authorization" => env('SQ_SPACE_API_KEY'),
             "User-Agent"=> "test",])->post("https://api.squarespace.com/1.0/commerce/orders/$order_id/fulfillments", [
-                'shouldSentNotification'=> true,
+                'shouldSendNotification'=> "true",
                 'shipments' => [[
                     'shipDate' => Carbon::now()->toIsoString(), 
                     'carrierName' => 'DPD', 
@@ -48,7 +48,7 @@ class FulfillOrderController extends Controller
             ]);
 
 
-            Order::where("order_id", $order_id)->update(['fulfilled' => true, 'tracking_id' => $tracking_no]);
+            Order::where("order_id", $order_id)->update(['fulfilled' => true, 'tracking_id' => "$tracking_no"]);
         }
        }
 
