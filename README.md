@@ -15,7 +15,9 @@ An app for my sisters small e-commerce company to reduce manual data entry for f
 3. Integrated with the Squarespace API
 
 ## Demo
+### Refreshing Orders
 ![Refreshing Orders](demo/refreshorders.gif)
+### Uploading CSV
 ![Uploading CSV](demo/uploadcsv.gif)
 
 ## Built with 
