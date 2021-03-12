@@ -20,7 +20,7 @@
                 </div>
                              
                 <div>
-                    <button type="submit" class="w-full  bg-theme rounded font-medium px-4 py-3 mt-2 -mb-4 text-white">Send reset link</button>
+                    <button type="submit" class="w-full  bg-theme rounded font-medium px-4 py-3 mt-2 text-white">Send reset link</button>
                 </div>
             </form>
             @if ($message = Session::get('status'))

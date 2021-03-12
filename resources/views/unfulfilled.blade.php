@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="flex flex-col justify-center">
+    <div class="flex flex-col justify-center mb-4">
         <div class="m-auto w-11/12 sm:w-9/12 bg-white p-6 rounded-lg flex flex-col"> 
           <div class="flex justify-between"> 
             <p class="text-lg mt-2 font-bold">Unfulfilled Orders</p>           
@@ -21,7 +21,7 @@
         <div class="mx-auto m-4 w-11/12 sm:w-9/12 bg-white p-6 rounded-lg shadow-lg bg-white flex flex-col">
         <div class="md:flex justify-between w-full">
           <p class="text-lg  font-bold">Upload CSV</p> 
-          <form class="mt-2 w-full flex justify-between md:justify-end action="{{ route('file-upload.post') }}" method="POST" enctype="multipart/form-data">
+          <form class="mt-2 w-full flex justify-between md:justify-end" action="{{ route('file-upload.post') }}" method="POST" enctype="multipart/form-data">
           @csrf
             <input type="file" name="file" class="self-center">
             <button type="submit" class="px-4 py-2 bg-theme text-white rounded-lg self-center">Upload</button>
