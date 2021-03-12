@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 // use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\FulfillOrderController;
 use App\Http\Controllers\OrdersController;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +34,10 @@ Route::post('/orders/unfulfilled', [OrdersController::class, 'fetch']);
 
 Route::get('/orders/fulfilled', [OrdersController::class, 'index'])->name('fulfilled');
 
+Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'forgot'])->name('password.forgot');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'index'])->name('password.reset');
+Route::post('/reset-password/{token}', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 // Route::get('/signup', [SignupController::class, 'index'])->name('signup');
 // Route::post('/signup', [SignupController::class, 'store']);

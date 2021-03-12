@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="flex justify-center items-center h-screen -mt-6">
-        <div class="min-w-1/2 bg-white p-6 rounded-lg mt-8">
-           
+        <div class="min-w-1/2 bg-white px-6 pt-6 rounded-lg mt-8 flex flex-col">
+    
             <form action="{{ route('login') }}" method="POST">
                 @csrf
                 
@@ -34,8 +34,10 @@
                     <button type="submit" class="w-full bg-theme rounded font-medium px-4 py-3 text-white">Login</button>
                 </div>
             </form>
+
+            <a class="text-theme self-center hover:bg-theme hover:text-white p-2 mt-2 hover:opacity-30 rounded-lg"href="{{route('password.request')}}">Forgot password</a>
             @if ($message = Session::get('status'))
-            <p class="font-bold text-red-600 text-center mt-4">{{ $message }} </p>
+            <p class="font-bold text-red-600 self-center mb-2">{{ $message }} </p>
            @endif 
         </div>
     </div>
