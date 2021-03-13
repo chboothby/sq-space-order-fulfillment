@@ -33,7 +33,7 @@ class OrdersController extends Controller
 
         } else {
             
-            $orders = Order::where("fulfilled", false)->latest()->paginate(10); 
+            $orders = Order::where("fulfilled", false)->latest()->paginate(20); 
         }
        
 
