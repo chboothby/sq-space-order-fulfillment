@@ -8,6 +8,7 @@ An app for my sisters small e-commerce company to reduce manual data entry for f
 2. Allows them to upload the fulfillent companies CSV containing order tracking IDs
 3. Orders are matched up with their corresponding tracking IDs
 4. Orders are then marked as fulfilled on Squarespace, sending a confirmation email to their customers 
+5. User can download a CSV file containing all shipping info of selected orders to send to courier
 
 ## Features
 1. Authenticated user login
