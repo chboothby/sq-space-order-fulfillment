@@ -1,7 +1,12 @@
 @extends('layouts.app')
+@php
+    $tracking_no_count = 0;
+@endphp
+
 
 
 @section('content')
+{{-- refresh unfulfilled orders --}}
     <div class="flex flex-col justify-center mb-4">
         <div class="m-auto w-11/12 sm:w-9/12 bg-white p-6 rounded-lg flex flex-col"> 
           <div class="flex justify-between"> 
@@ -17,7 +22,7 @@
           </div>
           @endif  
         </div>
-        
+{{-- upload tracking numbers csv --}}
         <div class="mx-auto m-4 w-11/12 sm:w-9/12 bg-white p-6 rounded-lg shadow-lg bg-white flex flex-col">
         <div class="md:flex justify-between w-full">
           <p class="text-lg  font-bold">Upload CSV</p> 
@@ -45,7 +50,7 @@
           @endif 
         </div>
 
-
+{{-- display unfulfilled orders --}}
         <div class="mx-auto w-11/12 sm:w-9/12 bg-white p-6 rounded-lg  shadow-lg bg-white">
             <form id="tracking-form" action="{{ route('fulfill') }}" method="post">
             @csrf
@@ -65,6 +70,9 @@
                             <input name="{{ $order->order_id }}" id={{ $order->order_id}} class="border w-full bg-purple-50 focus:outline-none focus:ring-2 focus:ring-theme text-center" @if ($message = Session::get('file'))
                             @if (array_key_exists($order->order_number, $message))
                               value={{$message[$order->order_number]}}
+                              @php
+                                  $tracking_no_count++; 
+                              @endphp
                             @endif
                         @endif type="text">
                         </td>
@@ -74,10 +82,17 @@
               </table>
             </form>
             @if ($orders->count() === 0)
-              <p class="text-center p-4">No orders to show</p>
+              <p class="text-center p-4">No orders to show</p>     
+            @else
+            <div class="flex justify-between">
+              <p class="font-bold pt-4">Total unfulfilled orders: {{$orders->count()}}</p>    
             @endif
-            {{$orders->links()}}
-              <div class="flex justify-between mt-4">
+            @if ($message = Session::get('file'))
+              <p class="font-bold pt-4">Orders to fulfill: {{$tracking_no_count}}</p>    
+            @endif
+            </div>
+{{-- fulfill or remove orders --}}
+              <div class="flex justify-between mt-2">
                 <form action="{{ route('orders.remove')}}" method="POST">
                   @csrf
                   @method('DELETE')
