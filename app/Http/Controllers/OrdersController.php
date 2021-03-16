@@ -18,7 +18,7 @@ class OrdersController extends Controller
     {
         $orders = [];
         if ($request->route()->named("fulfilled")) {
-            $orders = Order::where("fulfilled", true)->latest()->paginate(30); 
+            $orders = Order::where("fulfilled", true)->latest()->paginate(20); 
             
             foreach($orders as $order)
             {
@@ -31,16 +31,27 @@ class OrdersController extends Controller
                 'orders' => $orders
             ]);
 
-        } else {
+        } else if ($request->route()->named("unfulfilled")) {
             
-            $orders = Order::where("fulfilled", false)->latest()->paginate(20); 
+            $orders = Order::where("fulfilled", false)->latest()->paginate(50); 
+         
+            return view('unfulfilled', [
+                'orders' => $orders
+            ]);
+        } else {
+
+            $orders = Order::where("courier_informed", false)->latest()->paginate(50); 
+            return view('courier', [
+                'orders' => $orders
+            ]);
         }
+    }
+            
+    
+    
        
 
-        return view('unfulfilled', [
-            'orders' => $orders
-        ]);
-    }
+       
 
     public function fetch()
     {
@@ -55,7 +66,6 @@ class OrdersController extends Controller
         if ($response->status() != 200) {
             return back()->with('status', 'Unable to retrieve orders from Squarespace at the moment');
         }
-
         foreach($orders->result as $order){
             // check order no doesn't exist
             $existingOrder = Order::select("*")->where('order_number', $order->orderNumber)->get();
@@ -70,9 +80,15 @@ class OrdersController extends Controller
                     'quantity' => $order->lineItems[0]->quantity, 
                     'product' => $order->lineItems[0]->productName, 
                     'shipping' => $order->shippingLines[0]->method, 
-                    'fulfilled' => false
+                    'fulfilled' => false,
+                    'delivery_contact_name' => $order->shippingAddress->firstName . " " . $order->shippingAddress->lastName,
+                    'delivery_addressline1' => $order->shippingAddress->address1,
+                    'delivery_addressline2' => $order->shippingAddress->address2,
+                    'delivery_post_code' => $order->shippingAddress->postalCode,
+                    'notification_sms' => $order->shippingAddress->phone, 
+                    'notification_email' => $order->customerEmail, 
                 ]);
-            }
+        }
 
         }
         return back();

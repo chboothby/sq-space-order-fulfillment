@@ -4,10 +4,10 @@
 @section('content')
     <div class="flex flex-col justify-center">
         <div class="m-auto w-11/12 sm:w-9/12 bg-white p-6 flex justify-between rounded-lg">
-            <p class="text-lg font-bold">Fulfilled Orders</p>  
+            <p class="text-lg font-bold">Create CSV for Courier</p>  
         </div>
 
-        <div class="mx-auto m-4 w-11/12 sm:w-9/12 bg-white p-6 rounded-lg  shadow-lg bg-white">
+        <div class="h-96 mx-auto m-4 w-11/12 sm:w-9/12 bg-white p-6 rounded-lg  shadow-lg bg-white  overflow-x-scroll">
             <table class="table-auto w-full text-center m-1">
                 <thead>
                   <tr>

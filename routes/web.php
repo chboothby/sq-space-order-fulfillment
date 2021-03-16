@@ -34,6 +34,9 @@ Route::post('/orders/unfulfilled', [OrdersController::class, 'fetch']);
 
 Route::get('/orders/fulfilled', [OrdersController::class, 'index'])->name('fulfilled');
 
+Route::get('/orders/courier', [OrdersController::class, 'index'])->name('courier');
+
+
 Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'forgot'])->name('password.forgot');
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'index'])->name('password.reset');

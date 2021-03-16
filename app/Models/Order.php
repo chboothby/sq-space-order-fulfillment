@@ -10,7 +10,6 @@ class Order extends Model
     use HasFactory;
 
    
-
     protected $fillable = [
         'order_id',
         'order_number',
@@ -20,6 +19,12 @@ class Order extends Model
         'product',
         'shipping',
         'fulfilled',
+        'delivery_contact_name',
+        'delivery_addressline1',
+        'delivery_addressline2',
+        'delivery_post_code',
+        'notification_sms',
+        'notification_email',
     ];
 
    

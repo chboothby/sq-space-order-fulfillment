@@ -16,6 +16,7 @@
         <ul class="flex justify-around font-bold text-xl">
             <li><a class="hover:bg-theme hover:text-white p-2 hover:opacity-30 rounded-lg"href="{{route('unfulfilled')}}">Unfulfilled</a></li>
             <li><a class="hover:bg-theme hover:text-white p-2 hover:opacity-30 rounded-lg"href="{{route('fulfilled')}}">Fulfilled</a></li>            
+            <li><a class="hover:bg-theme hover:text-white p-2 hover:opacity-30 rounded-lg"href="{{route('courier')}}">Create CSV</a></li>            
             <form class="flex hover:bg-theme hover:text-white  hover:opacity-30 rounded-lg -m-2 p-2"action="{{route('logout') }}" method="POST" class="inline">
                 @csrf
                 <button class="font-bold" type="submit">Logout

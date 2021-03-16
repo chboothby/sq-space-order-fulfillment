@@ -24,6 +24,13 @@ class CreateOrdersTable extends Migration
             $table->text('shipping');
             $table->text('tracking_id')->nullable();
             $table->boolean('fulfilled');
+            $table->text('delivery_contact_name');
+            $table->text('delivery_addressline1');
+            $table->text('delivery_addressline2')->nullable();
+            $table->text('delivery_post_code');
+            $table->text('notification_sms');
+            $table->text('notification_email');
+            $table->boolean('courier_informed')->default(false);
             $table->timestamps();
         });
     }
