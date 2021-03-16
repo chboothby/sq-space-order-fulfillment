@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
-// use App\Http\Controllers\Auth\SignupController;
+use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
