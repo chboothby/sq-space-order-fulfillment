@@ -35,7 +35,11 @@ class MakeCSVController extends Controller
             fputcsv($file, $columns);
 
             foreach($ordersForCSV as $order) {
-                fputcsv($file, [$order->order_number, $order->delivery_contact_name, $order->delivery_addressline1, $order->delivery_addressline2, $order->delivery_post_code, "DO NOT LEAVE", $order->notification_sms, true, $order->notification_email, $order->quantity, $order->weight, Carbon::tomorrow(), 12]);
+                $num_of_parcels = 1;
+                if ($order->weight > 3) {
+                    $num_of_parcels = ceil($order->weight / 3);
+                }
+                fputcsv($file, [$order->order_number, $order->delivery_contact_name, $order->delivery_addressline1, $order->delivery_addressline2, $order->delivery_post_code, "DO NOT LEAVE", $order->notification_sms, $order->notification_sms, $order->notification_email, $num_of_parcels, $order->weight, Carbon::tomorrow(), 12]);
                 Order::where("order_number", $order->order_number)->update(['courier_informed' => true]);
             }
 
