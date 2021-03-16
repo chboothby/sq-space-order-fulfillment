@@ -31,11 +31,11 @@
                 <td class="border">{{ $order->delivery_addressline1 }}</td>
                 <td class="border">{{ $order->delivery_addressline2 }}</td>
                 <td class="border">{{ $order->delivery_post_code }}</td>
-                <td class="border">{{ $order->delivery_instructions }}</td>
+                <td class="border">DO NOT LEAVE</td>
                 <td class="border">{{ $order->notification_sms }}</td>
-                <td class="border">Yes</td>
+                <td class="border">{{ $order->notification_sms }}</td>
                 <td class="border">{{ $order->notification_email }}</td>
-                <td class="border">{{ $order->quantity }}</td>
+                <td class="border">{{ ceil($order->weight / 3) }}</td>
                 <td class="border">{{ $order->weight }}kg</td>
                 <td class="border">{{ \Carbon\Carbon::tomorrow() }}</td>
                 <td class="border">12</td>
