@@ -51,7 +51,7 @@
         </div>
 
 {{-- display unfulfilled orders --}}
-        <div class="mx-auto w-11/12 sm:w-9/12 bg-white p-6 rounded-lg  shadow-lg bg-white">
+        <div class="mx-auto w-11/12 sm:w-9/12 bg-white p-6 rounded-lg  shadow-lg bg-white h-full">
             <form id="tracking-form" action="{{ route('fulfill') }}" method="post">
             @csrf
             <table class="table-fixed w-full text-center m-1">
@@ -81,6 +81,7 @@
                 </tbody>
               </table>
             </form>
+            <div>
             @if ($orders->count() === 0)
               <p class="text-center p-4">No orders to show</p>     
             @else
@@ -91,24 +92,23 @@
               <p class="font-bold pt-4">Orders to fulfill: {{$tracking_no_count}}</p>    
             @endif
             </div>
-{{-- fulfill or remove orders --}}
-              <div class="flex justify-between mt-2">
-                <form action="{{ route('orders.remove')}}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <button onclick="return confirm('Are you sure you want to remove all unfulfilled orders?');" type="submit">
-                    <svg class="w-6 m-2"xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                  </button>
-                </form>
-                <button onclick="return confirm('Please confirm you would like to fulfill these orders');" class="px-4 py-3 bg-theme text-white rounded-lg self-end"type="submit" form="tracking-form">Fulfill Orders</button>
-              </div>
-              @if ($message = Session::get('fulfill'))
-              <div class="text-center mt-4 text-theme">
-                  <strong>{{ $message }} </strong>
-              </div>
-              @endif  
+            <div class="flex justify-between mt-2">
+              <form action="{{ route('orders.remove')}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button onclick="return confirm('Are you sure you want to remove all unfulfilled orders?');" type="submit">
+                  <svg class="w-6 m-2"xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </button>
+              </form>
+              <button onclick="return confirm('Please confirm you would like to fulfill these orders');" class="px-4 py-3 bg-theme text-white rounded-lg self-end"type="submit" form="tracking-form">Fulfill Orders</button>
+            </div>
+            @if ($message = Session::get('fulfill'))
+            <div class="text-center mt-4 text-theme">
+                <strong>{{ $message }} </strong>
+            </div>
+            @endif 
         </div>
    
     </div>

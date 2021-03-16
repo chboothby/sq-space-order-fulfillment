@@ -7,6 +7,7 @@ use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\FulfillOrderController;
+use App\Http\Controllers\MakeCSVController;
 use App\Http\Controllers\OrdersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +36,7 @@ Route::post('/orders/unfulfilled', [OrdersController::class, 'fetch']);
 Route::get('/orders/fulfilled', [OrdersController::class, 'index'])->name('fulfilled');
 
 Route::get('/orders/courier', [OrdersController::class, 'index'])->name('courier');
-
+Route::post('/orders/courier', [MakeCSVController::class, 'make'])->name('courier.make');
 
 Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'forgot'])->name('password.forgot');
@@ -50,6 +51,7 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 Route::post('/orders/fulfill', [FulfillOrderController::class, 'fulfill'])->name('fulfill');
 Route::delete('/orders', [OrdersController::class, 'removeAllOrders'])->name('orders.remove');
+
 
 Route::post('/upload-file', [FileUploadController::class, 'upload'])->name('file-upload.post');
 
