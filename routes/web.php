@@ -43,8 +43,8 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'forgot'])->na
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'index'])->name('password.reset');
 Route::post('/reset-password/{token}', [ResetPasswordController::class, 'reset'])->name('password.update');
 
-// Route::get('/signup', [SignupController::class, 'index'])->name('signup');
-// Route::post('/signup', [SignupController::class, 'store']);
+Route::get('/signup', [SignupController::class, 'index'])->name('signup');
+Route::post('/signup', [SignupController::class, 'store']);
 
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');

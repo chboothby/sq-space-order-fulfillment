@@ -43,11 +43,10 @@
             @endforeach
         </tbody>
       </table>
-      <button onclick="return confirm('Please confirm you would like to create a csv');" class="px-4 py-3 bg-theme text-white rounded-lg self-center mt-4" type="submit" form="csv-form">Create CSV</button>
-    </form>
-
       @if ($orders->count() === 0)
-      <p class="text-center p-4">No orders to show</p> 
+      <p class="text-center p-4">Up-to-date with orders</p> 
+      @else<button onclick="return confirm('Please confirm you would like to create a csv');" class="px-4 py-3 bg-theme text-white rounded-lg self-center mt-4" type="submit" form="csv-form">Create CSV</button>
+    </form>
       @endif
       {{$orders->links()}}
               
