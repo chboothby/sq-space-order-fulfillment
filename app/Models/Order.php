@@ -9,15 +9,15 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'order_id';
+    protected $primaryKey = 'order_number';
 
-   
+
     protected $fillable = [
         'order_id',
         'order_number',
         'order_date',
         'weight',
-        'quantity', 
+        'quantity',
         'product',
         'shipping',
         'fulfilled',
@@ -28,6 +28,4 @@ class Order extends Model
         'notification_sms',
         'notification_email',
     ];
-
-   
 }
