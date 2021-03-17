@@ -11,7 +11,7 @@ class SignupController extends Controller
 {
     public function __construct()
     {
-       $this->middleware('guest');
+        $this->middleware('guest');
     }
 
     public function index()
@@ -22,15 +22,15 @@ class SignupController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'=> 'required|max:255', 
-            'username'=> 'required|max:255',
-            'email'=>'required|email|max:255',
-            'password'=> 'required|confirmed',
+            'name' => 'required|max:255',
+            'username' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|confirmed',
         ]);
 
         User::create([
             'name' => $request->name,
-            'email' =>$request->email,
+            'email' => $request->email,
             'username' => $request->username,
             'password' => Hash::make($request->password),
         ]);

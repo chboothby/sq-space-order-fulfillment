@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
-    
+
     public function __construct()
     {
-       $this->middleware('guest');
+        $this->middleware('guest');
     }
 
-    public function index() {
-    
+    public function index()
+    {
         return view('auth.forgot-password');
-        
     }
 
-    public function forgot(Request $request) {
+    public function forgot(Request $request)
+    {
         $request->validate(['email' => 'required|email']);
 
         $status = Password::sendResetLink(
@@ -28,7 +28,7 @@ class ForgotPasswordController extends Controller
         );
 
         return $status === Password::RESET_LINK_SENT
-        ? back()->with(['status' => __($status)])
-        : back()->withErrors(['email' => __($status)]);
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
     }
 }

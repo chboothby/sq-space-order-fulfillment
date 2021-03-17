@@ -9,7 +9,7 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-       $this->middleware('guest');
+        $this->middleware('guest');
     }
 
     public function index()
@@ -20,8 +20,8 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'username'=> 'required',
-            'password'=> 'required',
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
         if (!auth()->attempt($request->only('username', 'password'), $request->remember)) {
@@ -29,6 +29,5 @@ class LoginController extends Controller
         }
 
         return redirect()->route('unfulfilled');
-        
     }
 }

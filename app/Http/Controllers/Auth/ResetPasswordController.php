@@ -14,16 +14,16 @@ class ResetPasswordController extends Controller
 {
     public function __construct()
     {
-       $this->middleware('guest');
+        $this->middleware('guest');
     }
 
-    public function index($token) {
-    
-        return view('auth.reset-password', ['token'=> $token]);
-        
+    public function index($token)
+    {
+        return view('auth.reset-password', ['token' => $token]);
     }
 
-    public function reset(Request $request) {
+    public function reset(Request $request)
+    {
 
         $request->validate([
             'email' => 'required|email',
@@ -36,18 +36,14 @@ class ResetPasswordController extends Controller
                 $user->forceFill([
                     'password' => Hash::make($password)
                 ])->save();
-    
+
                 $user->setRememberToken(Str::random(60));
-    
+
                 event(new PasswordReset($user));
             }
         );
         return $status == Password::PASSWORD_RESET
-                ? redirect()->route('login')->with('status', __($status))
-                : back()->withErrors(['email' => [__($status)]]);
-
-
+            ? redirect()->route('login')->with('status', __($status))
+            : back()->withErrors(['email' => [__($status)]]);
     }
-
-     
 }
