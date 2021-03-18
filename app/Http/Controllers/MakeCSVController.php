@@ -19,26 +19,33 @@ class MakeCSVController extends Controller
 
         $ordersForCSV = Order::select(['order_number', 'delivery_contact_name', 'delivery_addressline1', 'delivery_addressline2', 'delivery_post_code', 'notification_sms', 'notification_email', 'quantity', 'weight'])->whereIn('order_number', $orders)->get();
 
-        $columns = ['customer_ref1', 'delivery_contact_name', 'delivery_addressline1', 'delivery_addressline2', 'delivery_post_code', 'delivery_instructions', 'delivery_contact_no', 'notification_sms', 'notification_email', 'number_of_parcels', 'total_weight', 'shipment_date', 'Delivery Service code'];
+        $columns = ['customer_ref1', 'delivery_contact_name', 'delivery_addressline1', 'delivery_addressline2', 'delivery_addressline3', 'delivery_addressline4', 'delivery_post_code', 'delivery_instructions', 'delivery_contact_no', 'notification_sms', 'notification_email', 'number_of_parcels', 'total_weight', 'shipment_date', 'Delivery Service code'];
 
-        $headers = array(
+        $headers = [
             'Content-type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename=orders.csv',
             'Pragma' => 'no-cache',
             'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
             'Expires' => '0'
-        );
+        ];
 
         $callback = function () use ($ordersForCSV, $columns) {
             $file = fopen('php://output', 'w');
+            // add headings to csv
             fputcsv($file, $columns);
 
             foreach ($ordersForCSV as $order) {
-                $num_of_parcels = 1;
-                if ($order->weight > 3) {
-                    $num_of_parcels = ceil($order->weight / 3);
+                // add row data to csv
+
+                $num_of_parcels = ceil($order->weight / 3);
+
+                // add weight of packaging to total order weight;
+                $total_weight = 4;
+                if ($order->weight > 2) {
+                    $total_weight = ceil($order->weight * (5 / 3));
                 }
-                fputcsv($file, [$order->order_number, $order->delivery_contact_name, $order->delivery_addressline1, $order->delivery_addressline2, $order->delivery_post_code, 'DO NOT LEAVE', $order->notification_sms, $order->notification_sms, $order->notification_email, $num_of_parcels, $order->weight, Carbon::tomorrow(), 12]);
+
+                fputcsv($file, [$order->order_number, $order->delivery_contact_name, $order->delivery_addressline1, $order->delivery_addressline2, '', '', $order->delivery_post_code, 'DO NOT LEAVE', $order->notification_sms, $order->notification_sms, $order->notification_email, $num_of_parcels, $total_weight, Carbon::tomorrow(), 12]);
                 Order::where('order_number', $order->order_number)->update(['courier_informed' => true]);
             }
 

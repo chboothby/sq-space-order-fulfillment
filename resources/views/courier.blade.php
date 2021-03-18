@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @php
 $table_headings = ['customer_ref1', 'delivery_contact_name', 'delivery_addressline1', 'delivery_addressline2', 'delivery_post_code', 'delivery_instructions', 'delivery_contact_no', 'notification_sms', 'notficication_email', 'number_of_parcels', 'total_weight', 'shipment_date', 'Delivery Service code'];
+
+function getTotalWeight($weight) {
+    $total_weight = 4;
+    if ($weight > 2) {
+        $total_weight = ceil($order->weight * (5 / 3));
+    }
+    return $total_weight;
+}
+
 @endphp
 
 @section('content')
@@ -39,7 +48,7 @@ $table_headings = ['customer_ref1', 'delivery_contact_name', 'delivery_addressli
                                 <td class="border">{{ $order->notification_sms }}</td>
                                 <td class="border">{{ $order->notification_email }}</td>
                                 <td class="border">{{ ceil($order->weight / 3) }}</td>
-                                <td class="border">{{ $order->weight }}kg</td>
+                                <td class="border">{{getTotalWeight ($order->weight) }}kg</td>
                                 <td class="border">{{ \Carbon\Carbon::tomorrow() }}</td>
                                 <td class="border">12</td>
                             </tr>
