@@ -5,7 +5,7 @@ $table_headings = ['customer_ref1', 'delivery_contact_name', 'delivery_addressli
 function getTotalWeight($weight) {
     $total_weight = 4;
     if ($weight > 2) {
-        $total_weight = ceil($order->weight * (5 / 3));
+        $total_weight = ceil($weight * (5 / 3));
     }
     return $total_weight;
 }
